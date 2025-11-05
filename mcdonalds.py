@@ -1,7 +1,6 @@
 # some places are hardcoded cuz mcdonalds changed their
 # code on the survey page
-# it might be shitty code but u can tweak it ig
-
+# remember to update
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
