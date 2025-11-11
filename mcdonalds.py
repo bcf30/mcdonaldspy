@@ -2,16 +2,17 @@
 # code on the survey page
 # remember to update
 
+
 from selenium import webdriver
-from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 import time
 
 options = Options()
-options.binary_location = "C:\\Users\\Ramir\\AppData\\Local\\Thorium\\Application"
+options.binary_location = 'C:\\Users\\Ramiro\\AppData\\Local\\Thorium\\Application\\thorium.exe'
 
 def main():
     driver = webdriver.Chrome(options=options)
@@ -37,15 +38,15 @@ def main():
 
         date_input = wait_for_element(driver, By.ID, "cal_q_mcd_gss_visit_date_date_")
         date_input.clear()
-        date_input.send_keys("03/27/2025")  # CHANGE FOR DIFFERENT DATE
+        date_input.send_keys("09/21/2025")  # CHANGE FOR DIFFERENT DATE
 
         select_custom_dropdown_option(driver, "12 (12pm)")  # change for day
 
-        select_visit_minutes(driver, "20")  # CHANGE FOR MINUTES
+        select_visit_minutes(driver, "25")  # CHANGE FOR MINUTES
 
         amount_spent = wait_for_element(driver, By.ID, "spl_q_mcd_gss_amount_text")
         amount_spent.click()
-        amount_spent.send_keys("9.01")  # CHANGE FOR DIFFERENT AMOUNT SPENT
+        amount_spent.send_keys("20.00")  # CHANGE FOR DIFFERENT AMOUNT SPENT
 
         click_next(driver)
 
@@ -61,8 +62,8 @@ def main():
 
         click_next(driver)
 
-        click_radio_by_value(driver, "ch_q_mcd_gss_burger_item_with_big_arch_enum",
-                             "7")  # CHANGE THE NUMBER IN BRACKETS FOR A DIFFERENT SANDWICH OPTION
+        click_radio_by_value(driver, "ch_q_mcd_gss_burger_item_with_mcveggie_enum",
+                             "5")  # CHANGE THE NUMBER IN BRACKETS FOR A DIFFERENT SANDWICH OPTION
 
         click_next(driver)
 
@@ -98,7 +99,7 @@ def main():
 
         email_input = wait_for_element(driver, By.ID, "spl_q_mcd_gss_coupon_email_email")
         email_input.clear()
-        email_input.send_keys("ramiro.chen@outlook.com")
+        email_input.send_keys("ramiro.####@#######.com")
 
         # click_element(driver, By.ID, "buttonFinish") #this is the final button for submitting
 
