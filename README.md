@@ -1,0 +1,1 @@
+Fill out the McDonald's survey automatically for you so you can upgrade to a combo for free. Currently optimized for my home setup with the file pathing. (Canada only, may go out of date as McDonald's changes their webpage names as seasonal events occur and/or limited-time items are on the menu.)
