@@ -1,8 +1,3 @@
-# some places are hardcoded cuz mcdonalds changed their
-# code on the survey page
-# remember to update
-
-
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
@@ -10,6 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 import time
+from datetime import datetime, timedelta
 
 options = Options()
 options.binary_location = 'C:\\Users\\Ramiro\\AppData\\Local\\Thorium\\Application\\thorium.exe'
@@ -36,13 +32,12 @@ def main():
 
         click_next(driver)
 
+        yesterdaydate = (datetime.today()-timedelta(days=1)).strftime("%m/%d/%Y")
         date_input = wait_for_element(driver, By.ID, "cal_q_mcd_gss_visit_date_date_")
         date_input.clear()
-        date_input.send_keys("09/21/2025")  # CHANGE FOR DIFFERENT DATE
+        date_input.send_keys(yesterdaydate)  # chooses yesterday as date
 
-        select_custom_dropdown_option(driver, "12 (12pm)")  # change for day
-
-        select_visit_minutes(driver, "25")  # CHANGE FOR MINUTES
+        select_custom_dropdown_option(driver, "13 (1pm)")  # change for hour
 
         amount_spent = wait_for_element(driver, By.ID, "spl_q_mcd_gss_amount_text")
         amount_spent.click()
@@ -62,8 +57,7 @@ def main():
 
         click_next(driver)
 
-        click_radio_by_value(driver, "ch_q_mcd_gss_burger_item_with_mcveggie_enum",
-                             "5")  # CHANGE THE NUMBER IN BRACKETS FOR A DIFFERENT SANDWICH OPTION
+        click_first_option(driver) # clicks first available menu item
 
         click_next(driver)
 
@@ -192,6 +186,9 @@ def click_radio_by_value(driver, name, value):
     )
     driver.execute_script("arguments[0].click();", radio)
 
+def click_first_option(driver, timeout=9):
+    options = wait_for_element(driver, By.CSS_SELECTOR, "input[name^='ch_q_mcd_gss_']")
+    driver.execute_script("arguments[0].click();", options)
 
 if __name__ == "__main__":
     main()
